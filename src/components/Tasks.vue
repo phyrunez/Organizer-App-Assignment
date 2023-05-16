@@ -51,6 +51,13 @@
                 </add-tasks>
             </div>
 
+            <div v-show="showHome">
+                <home v-for="(task, index) in tasks"
+                    :task="task"
+                    :key="index"
+                ></home>
+            </div>
+
         </div>
 
     </div>
@@ -58,11 +65,13 @@
 
 <script>
     import AddTasks from "./AddTasks.vue"
+    import Home from "./Home.vue"
 
     export default {
         name: 'Tasks',
         components: {
             'add-tasks': AddTasks,
+            'home': Home
         },
         data() {
             return {
@@ -72,9 +81,11 @@
                 second: '',
                 third: '',
                 status: '',
+                showHome: false,
                 tasks: [
                     {
                         title: 'Go Shopping',
+                        taskId: 1,
                         completed: false,
                         status: 'pending',
                         first: 'Buy Beverages',
@@ -101,7 +112,7 @@
                         third: this.third,
                     });
                 }
-                localStorage.setItem('Tasks', subTasks)
+                localStorage.setItem('Tasks', JSON.stringify(this.tasks))
                 console.log(subTasks, this.tasks)
                 this.newTask = '',
                 this.first = '',
@@ -120,11 +131,12 @@
 </script>
 
 <style scoped>
+body { overflow-x: hidden; width: 100%; }
 #tasks {
     background: rgb(106, 90, 205, .8);
     height: 170px;
     width: 700px;
-    margin: 50px auto 0;
+    margin: 90px auto 0;
     border-radius: 0 10px;
 }
 
@@ -183,7 +195,7 @@ button {
     font-weight: bold;
 }
 .add-task{
-    margin-top: 30px;
+    margin-top: 70px;
 }
 </style>
 

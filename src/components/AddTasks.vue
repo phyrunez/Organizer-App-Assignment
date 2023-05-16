@@ -54,16 +54,8 @@
             }
         },
         methods: {
-            close(task, taskId) {
+            close() {
                 this.showModal = false
-                let taskArr = [task]
-                let updated_task = taskArr.findIndex(obj => obj.taskId == taskId)
-                this.task[updated_task].title = this.newTask
-                this.task[updated_task].first = this.first
-                this.task[updated_task].second = this.second
-                this.task[updated_task].third = this.third
-                this.task[updated_task].status = this.status
-                console.log(this.task.title, this.task.first)
             }, 
             getDetails() {
                 this.showModal = true

@@ -45,7 +45,8 @@
                     <div class="modal-footer">
                         <slot name="footer">
                             
-                            <button class="modal-default-button" @click="$emit('close')">update task</button>
+                            <button class="modal-default-button" @click="$emit('close')">Go Back</button>
+                            <button class="modal-default-button" @click="update()">Update Task</button>
                         </slot>
                     </div>
                 </div>
@@ -75,7 +76,15 @@
             this.status = this.task.status
         },
         methods: {
-            
+            update(task, taskId) {
+                console.log(this.task)
+                this.task.title = this.newTask
+                this.task.first = this.first
+                this.task.second = this.second
+                this.task.third = this.third
+                this.task.status = this.status
+                console.log(this.task)
+            }
         }
     }
 </script>
