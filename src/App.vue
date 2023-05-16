@@ -1,28 +1,40 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <navbar 
+      :pages="pages"
+      :active-page="activePage"
+      :nav-link-click="(index) => { activePage = index }"
+    />
+    <!-- <task :tasks="tasks" /> -->
+    <router-view></router-view>
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from './components/Navbar.vue'
+import Tasks from './components/Tasks.vue'
+// import Home from './components/Home.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    'navbar': Navbar,
+    'task': Tasks,
+    // 'home': Home
+  },
+  data() {
+    return {
+      activePage: 0,
+      page: [
+        { text: 'Home', url: 'index.html' },
+        { text: 'Add Tasks', url: 'tasks.html' },
+      ],
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
