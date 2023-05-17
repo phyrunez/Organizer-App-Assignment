@@ -1,14 +1,8 @@
 <template>
-  <div>
     <div id="app">
-    <navbar 
-      :pages="pages"
-      :active-page="activePage"
-      :nav-link-click="(index) => { activePage = index }"
-    />
-  </div>
-  <router-view></router-view>
-  </div>
+      <navbar />
+      <router-view></router-view>
+    </div> 
 </template>
 
 <script>
@@ -25,11 +19,7 @@ export default {
   },
   data() {
     return {
-      activePage: 0,
-      page: [
-        { text: 'Home', url: 'index.html' },
-        { text: 'Add Tasks', url: 'tasks.html' },
-      ],
+      
     }
   }
 }
