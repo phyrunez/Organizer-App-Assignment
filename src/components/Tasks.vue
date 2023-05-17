@@ -41,6 +41,7 @@
                 </div> 
             </div>
 
+            
             <div class="col-6 ml-5 add-task">
                 <add-tasks v-for="(task, index) in tasks"
                     :task="task" 
@@ -86,13 +87,13 @@
                     {
                         title: 'Go Shopping',
                         taskId: 1,
-                        completed: false,
-                        status: 'pending',
+                        status: 'Pending',
                         first: 'Buy Beverages',
                         second: 'Get Chocolate',
                         third: 'buy Clothes',
                     }
                 ],
+                components: 'add-tasks'
             }
         },
         computed: {
@@ -105,7 +106,7 @@
                 if (this.newTask) {
                     this.tasks.push({
                         title: this.newTask,
-                        completed: this.completed,
+                        taskId: this.tasks.length + 1,
                         status: this.status,
                         first: this.first,
                         second: this.second,
@@ -125,6 +126,8 @@
             },
             removeTask(index) {
                 this.tasks.splice(index, 1);
+                localStorage.setItem('Tasks', JSON.stringify(this.tasks))
+                console.log(this.tasks)
             },
         }
     }

@@ -15,14 +15,10 @@
                 <li>{{ task.second }}</li>
                 <li>{{ task.third }}</li>
             </ol>
-            <span v-if="task.status === 'Pending'">
-                <p id="pending">{{ task.status }}</p>
-            </span>
-            <span v-else-if="task.status === 'In Progress'">
-                <p id="in-progress">{{ task.status }}</p>
-            </span>
-            <span v-else="task.status === 'Completed'">
-                <p id="completed">{{ task.status }}</p>
+            <span>
+                <p v-if="task.status === 'In Progress'" id="in-progress">{{ task.status }}</p>
+                <p v-else-if="task.status === 'Completed'" id="completed">{{ task.status }}</p>
+                <p v-else="task.status === 'Pending'" id="pending">{{ task.status }}</p>
             </span>
         </div>
         <modal 
@@ -30,7 +26,6 @@
             :task="task"
             @close="close(task)"
         >
-            <!-- <h1 slot="header">Edit Task</h1> -->
         </modal>
     </div>
 </template>
@@ -89,7 +84,7 @@ span {
 #pending {
     text-transform: uppercase;
     font-size: bold;
-    background: #198754;
+    background: #dc3545;
     margin-top: -20px;
     padding: 6px;
     color: white;
@@ -98,7 +93,7 @@ span {
 #in-progress {
     text-transform: uppercase;
     font-size: bold;
-    background: #dc3545;
+    background: #ffc107;
     margin-top: -20px;
     padding: 6px;
     color: white;
@@ -107,7 +102,7 @@ span {
 #completed {
     text-transform: uppercase;
     font-size: bold;
-    background: #ffc107;
+    background: #198754;
     margin-top: -20px;
     padding: 6px;
     color: white;

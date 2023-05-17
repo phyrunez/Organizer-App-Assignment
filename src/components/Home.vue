@@ -4,15 +4,15 @@
             <div class="row m-5 row_content">
                 <div class="col-3 bg-success content">
                     <p>Total Number of Completed Tasks</p>
-                    <span @click.prevent="checkTask()">0</span>
-                </div>
-                <div class="col-3 bg-danger content">
-                    <p>Total Number of Tasks in progress</p>
-                    <span>0</span>
+                    <span v-show="state = true" :completed="completed">{{ completed }}</span>
                 </div>
                 <div class="col-3 bg-warning content">
+                    <p>Total Number of Tasks in progress</p>
+                    <span v-show="state = true" :inProgress="inProgress">{{ inProgress }}</span>
+                </div>
+                <div class="col-3 bg-danger content">
                     <p>Total Number of Pending Tasks</p>
-                    <span>0</span>
+                    <span :pending="pending">{{ pending }}</span>
                 </div>
             </div>
         </div>
@@ -24,23 +24,47 @@
 </template>
 
 <script>
-    import AddTasks from './AddTasks.vue'
+    import { onMounted } from 'vue'
+import AddTasks from './AddTasks.vue'
     export default {
         name: 'Home',
         props: ['task'],
         components: {
             'add-tasks': AddTasks
         },
-        methods: {
-            checkTask() {
-                console.log(this.task)
+        data() {
+            return {
+                length: '',
+                pending: '',
+                inProgress: '',
+                completed: '',
+                state: true
             }
         },
-        mounted() {
+        methods: {
+            completedTask() {
+                
+            }
+        },
+        created() {
             let me = JSON.parse(localStorage.getItem('Tasks'))
             console.log(me)
-            console.log(me.title)
-        }
+            let inProgress = me.map(m => m.status).filter(s => s == 'In Progress')
+            let pending = me.map(m => m.status).filter(s => s == 'Pending')
+            let completed = me.map(m => m.status).filter(s => s == 'Completed')
+            console.log(inProgress)
+            console.log(pending)
+            console.log(completed)
+            this.inProgress = inProgress.length
+            this.pending = pending.length
+            this.completed = completed.length
+            // let pending = status.filter(s => s == 'pending')
+            // let completed = status.filter(s => s == 'completed')
+            // this.pending = pending.length
+            // this.inProgress = inProgress.length
+            // this.completed = completed.length
+        },
+        
     }
 </script>
 
@@ -71,8 +95,8 @@
     margin: 0 10px;
     border-radius: 10px 0
 }
-.content p, span { 
-    font-size: 17px;
+.content p { 
+    font-size: 18px;
     font-weight: bold 
 }
 .content span {
@@ -80,6 +104,8 @@
     width: 30px;
     text-align: center;
     border: transparent;
+    font-size: 20px;
+    font-weight: bold 
 }
 span { 
     float: right; 
