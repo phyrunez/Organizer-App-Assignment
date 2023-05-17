@@ -7,13 +7,13 @@
       :nav-link-click="(index) => { activePage = index }"
     />
   </div>
-    <router-view></router-view>
+  <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue'
-import Tasks from './components/Tasks.vue'
+import Tasks from './components/Tasks/Tasks.vue'
 import Home from './components/Home.vue'
 
 export default {

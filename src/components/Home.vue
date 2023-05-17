@@ -4,11 +4,11 @@
             <div class="row m-5 row_content">
                 <div class="col-3 bg-success content">
                     <p>Total Number of Completed Tasks</p>
-                    <span v-show="state = true" :completed="completed">{{ completed }}</span>
+                    <span :completed="completed">{{ completed }}</span>
                 </div>
                 <div class="col-3 bg-warning content">
                     <p>Total Number of Tasks in progress</p>
-                    <span v-show="state = true" :inProgress="inProgress">{{ inProgress }}</span>
+                    <span :inProgress="inProgress">{{ inProgress }}</span>
                 </div>
                 <div class="col-3 bg-danger content">
                     <p>Total Number of Pending Tasks</p>
@@ -18,7 +18,7 @@
         </div>
         <div id='created_task'>
             <h2>All Tasks Created</h2>
-            <a href="/tasks"><button>Tasks</button></a>
+            <router-link class="nav-link" to="/tasks"><button>Tasks</button></router-link>
         </div>
     </div>
 </template>
@@ -32,14 +32,13 @@
                 pending: '',
                 inProgress: '',
                 completed: '',
-                state: true
             }
         },
         methods: {
             
         },
         created() {
-            let allTask = JSON.parse(localStorage.getItem('Tasks'))
+            let allTask = [...JSON.parse(localStorage.getItem('Tasks'))]
             let inProgress = allTask.map(m => m.status).filter(s => s == 'In Progress')
             let pending = allTask.map(m => m.status).filter(s => s == 'Pending')
             let completed = allTask.map(m => m.status).filter(s => s == 'Completed')
@@ -55,7 +54,7 @@
             this.inProgress = inProgress.length
             this.pending = pending.length
             this.completed = completed.length
-        }
+        },
         
     }
 </script>
