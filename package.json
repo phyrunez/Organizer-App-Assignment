@@ -16,7 +16,8 @@
     "bootstrap-vue": "^2.23.1",
     "core-js": "^3.8.3",
     "vue": "^2.7.14",
-    "vue-router": "^2.5.2"
+    "vue-router": "^2.5.2",
+    "vue-router-keep-alive-helper": "^0.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",

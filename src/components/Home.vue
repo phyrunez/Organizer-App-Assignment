@@ -24,14 +24,8 @@
 </template>
 
 <script>
-    import { onMounted } from 'vue'
-import AddTasks from './AddTasks.vue'
     export default {
         name: 'Home',
-        props: ['task'],
-        components: {
-            'add-tasks': AddTasks
-        },
         data() {
             return {
                 length: '',
@@ -42,28 +36,26 @@ import AddTasks from './AddTasks.vue'
             }
         },
         methods: {
-            completedTask() {
-                
-            }
+            
         },
         created() {
-            let me = JSON.parse(localStorage.getItem('Tasks'))
-            console.log(me)
-            let inProgress = me.map(m => m.status).filter(s => s == 'In Progress')
-            let pending = me.map(m => m.status).filter(s => s == 'Pending')
-            let completed = me.map(m => m.status).filter(s => s == 'Completed')
-            console.log(inProgress)
-            console.log(pending)
-            console.log(completed)
+            let allTask = JSON.parse(localStorage.getItem('Tasks'))
+            let inProgress = allTask.map(m => m.status).filter(s => s == 'In Progress')
+            let pending = allTask.map(m => m.status).filter(s => s == 'Pending')
+            let completed = allTask.map(m => m.status).filter(s => s == 'Completed')
             this.inProgress = inProgress.length
             this.pending = pending.length
             this.completed = completed.length
-            // let pending = status.filter(s => s == 'pending')
-            // let completed = status.filter(s => s == 'completed')
-            // this.pending = pending.length
-            // this.inProgress = inProgress.length
-            // this.completed = completed.length
         },
+        mounted() {
+            let allTask = JSON.parse(localStorage.getItem('Tasks'))
+            let inProgress = allTask.map(m => m.status).filter(s => s == 'In Progress')
+            let pending = allTask.map(m => m.status).filter(s => s == 'Pending')
+            let completed = allTask.map(m => m.status).filter(s => s == 'Completed')
+            this.inProgress = inProgress.length
+            this.pending = pending.length
+            this.completed = completed.length
+        }
         
     }
 </script>

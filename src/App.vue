@@ -1,10 +1,12 @@
 <template>
-  <div id="app">
+  <div>
+    <div id="app">
     <navbar 
       :pages="pages"
       :active-page="activePage"
       :nav-link-click="(index) => { activePage = index }"
     />
+  </div>
     <router-view></router-view>
   </div>
 </template>

@@ -10,7 +10,6 @@
                     </div>
                     <div class="modal-body">
                         <slot name="body">
-                            <!-- default body -->
                             <input 
                                 v-model="newTask" 
                                 type="text" 
@@ -46,7 +45,7 @@
                         <slot name="footer">
                             
                             <button class="modal-default-button" @click="$emit('close')">Go Back</button>
-                            <button class="modal-default-button" @click="update()">Update Task</button>
+                            <button class="modal-default-button_update" @click="update()">Update Task</button>
                         </slot>
                     </div>
                 </div>
@@ -163,13 +162,25 @@
 
 .modal-default-button {
   float: right;
-  background: green;
-  border: green;
+  background: orangered;
+  border: orangered;
   margin: -20px 0 0 0;
   border-radius: 10px 0 0 0;
+  color: white;
   padding: 8px;
   cursor: pointer;
 }
+
+.modal-default-button_update {
+  float: right;
+  background: green;
+  border: green;
+  margin: -20px 0 0 5px;
+  border-radius: 0 0 10px 0;
+  padding: 8px;
+  cursor: pointer;
+}
+
 
 .modal-enter {
   opacity: 0;

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="added-tasks">
-            <p @click.self="$emit('complete')">
+            <p>
                 Task: {{ task.title }}
                 <span @click="$emit('remove')" :style="{ color: 'red', fontSize: '20px'}">
                     <b-icon class="ml-2" icon="trash-fill"></b-icon>

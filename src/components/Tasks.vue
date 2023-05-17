@@ -41,24 +41,14 @@
                 </div> 
             </div>
 
-            
             <div class="col-6 ml-5 add-task">
                 <add-tasks v-for="(task, index) in tasks"
                     :task="task" 
                     @remove="removeTask(index)"
-                    @complete="completeTask(task)"
                     :key="index"
                 >
                 </add-tasks>
             </div>
-
-            <div v-show="showHome">
-                <home v-for="(task, index) in tasks"
-                    :task="task"
-                    :key="index"
-                ></home>
-            </div>
-
         </div>
 
     </div>
@@ -66,13 +56,11 @@
 
 <script>
     import AddTasks from "./AddTasks.vue"
-    import Home from "./Home.vue"
 
     export default {
         name: 'Tasks',
         components: {
             'add-tasks': AddTasks,
-            'home': Home
         },
         data() {
             return {
@@ -82,7 +70,6 @@
                 second: '',
                 third: '',
                 status: '',
-                showHome: false,
                 tasks: [
                     {
                         title: 'Go Shopping',
@@ -121,9 +108,9 @@
                 this.third = '',
                 this.status = ''
             },
-            completeTask(task) {
-                task.completed = !task.completed;
-            },
+            // completeTask(task) {
+            //     task.completed = !task.completed;
+            // },
             removeTask(index) {
                 this.tasks.splice(index, 1);
                 localStorage.setItem('Tasks', JSON.stringify(this.tasks))
