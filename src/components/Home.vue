@@ -1,5 +1,5 @@
 <template>
-    <div id="task_created">
+    <!-- <div id="task_created">
         <div class="container">
             <div class="row m-5 row_content">
                 <div class="col-3 bg-success content">
@@ -20,12 +20,17 @@
             <h2>All Tasks Created</h2>
             <router-link class="nav-link" to="/tasks"><button>Tasks</button></router-link>
         </div>
-    </div>
+    </div> -->
+    <home-data />
 </template>
 
 <script>
+    import HomeData from './HomeData.vue'
     export default {
         name: 'Home',
+        components: {
+            'home-data': HomeData
+        },
         data() {
             return {
                 length: '',

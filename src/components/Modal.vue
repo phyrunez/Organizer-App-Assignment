@@ -42,8 +42,7 @@
                         </slot>
                     </div>
                     <div class="modal-footer">
-                        <slot name="footer">
-                            
+                        <slot name="footer">   
                             <button class="modal-default-button" @click="$emit('close')">Go Back</button>
                             <button class="modal-default-button_update" @click="update()">Update Task</button>
                         </slot>
@@ -57,14 +56,14 @@
 <script>
     export default {
         name: 'Modal',
-        props: ['task'],
+        props: ['task', 'showModal'],
         data() {
             return {
                 newTask: '',
                 first: '',
                 second: '',
                 third: '',
-                status: ''
+                status: '',
             }
         },
         created() {
@@ -75,13 +74,14 @@
             this.status = this.task.status
         },
         methods: {
-            update(task, taskId) {
-                console.log(this.task)
-                this.task.title = this.newTask
-                this.task.first = this.first
-                this.task.second = this.second
-                this.task.third = this.third
-                this.task.status = this.status
+            update() {
+                this.$emit('Title', this.task.title = this.newTask)
+                this.$emit('First', this.task.first = this.first)
+                this.$emit('Second', this.task.second = this.second)
+                this.$emit('Third', this.task.third = this.third)
+                this.$emit('Status', this.task.status = this.status)
+                localStorage.setItem('Tasks', JSON.stringify(this.task))
+                this.$emit('close')
                 console.log(this.task)
             }
         }
@@ -120,11 +120,6 @@
 .modal-header #header-h2 {
     text-align: center;
 }
-
-/* .modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
-} */
 
 .modal-body {
   margin: 20px 0;
@@ -180,8 +175,6 @@
   padding: 8px;
   cursor: pointer;
 }
-
-
 .modal-enter {
   opacity: 0;
 }
